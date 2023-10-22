@@ -9,23 +9,23 @@ import './App.css';
  * Started Sunday, October 22, 2023
  */
 
-const App = () => {
-  const name = "Jane";
-  const isNameShowing = true;
+const Person = () => {
+  return(
+    <>
+      <h1>Name: Ignác</h1>
+      <h2>Last Name: Semmelweis</h2>
+      <h2>Age: 26</h2>
+      <hr></hr>
+    </>
+  );
+}
 
+const App = () => {
   return (
     <div className="App">
-      {name ? (
-        <>
-          <h1>Hello, {name}!</h1>
-        </>
-      ):(
-        <>
-          <h1>Testing, still...</h1>
-          <h2>(There is no name!)</h2>
-        </>
-      )
-    }
+      <Person/>
+      <Person/>
+      <Person/>
     </div>
   );
 }
