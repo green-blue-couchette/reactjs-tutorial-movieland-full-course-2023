@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+/**
+ * Follows the tutorial "React JS Full Course 2023 | Build an App and Master React in 1 Hour"
+ * 1:11:43
+ * by JavaScript Mastery on YouTube
+ * - Oliver
+ * 
+ * Started Sunday, October 22, 2023
+ */
+
+const App = () => {
+  const name = "Jane";
+  const isNameShowing = true;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {name ? (
+        <>
+          <h1>Hello, {name}!</h1>
+        </>
+      ):(
+        <>
+          <h1>Testing, still...</h1>
+          <h2>(There is no name!)</h2>
+        </>
+      )
+    }
     </div>
   );
 }
