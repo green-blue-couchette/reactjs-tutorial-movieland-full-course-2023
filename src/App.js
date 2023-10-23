@@ -9,12 +9,12 @@ import './App.css';
  * Started Sunday, October 22, 2023
  */
 
-const Person = () => {
+const Person = (props) => {
   return(
     <>
-      <h1>Name: Ignác</h1>
-      <h2>Last Name: Semmelweis</h2>
-      <h2>Age: 26</h2>
+      <h1>Name: {props.name}</h1>
+      <h2>Last Name: {props.lastName}</h2>
+      <h2>Age: {props.age}</h2>
       <hr></hr>
     </>
   );
@@ -23,9 +23,9 @@ const Person = () => {
 const App = () => {
   return (
     <div className="App">
-      <Person/>
-      <Person/>
-      <Person/>
+      <Person name="Ignác"      lastName="Semmelweis" age={32}/>
+      <Person name="Kriszta"    lastName="Mézga"      age={9}/>
+      <Person name="Carl-Oskar" lastName="Skytt"      age={25}/>
     </div>
   );
 }
