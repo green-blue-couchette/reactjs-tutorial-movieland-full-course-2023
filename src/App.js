@@ -23,9 +23,11 @@ const App = () => {
         console.log("Found movies", movies);
     }
     
-    // Do something whenever the component is mounted
+    // Do a first movie search when the component is mounted
     useEffect(() => {
-        console.log("Component has mounted");
+        const search = "Writers"; // The first movie that should show up is one I liked.
+        setSearchTerm(search);
+        searchMovies(search); // For some reason it doesn't work as expected when it's searchMovies(searchTerm);
     }, []);
 
     return(
