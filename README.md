@@ -13,4 +13,4 @@ I built this to help me re-learn ReactJS.
 My steps can be followed by looking at the commit history.  
 I added some of my own improvements to the search experience (searching by pressing enter, clearing the search box when a search is made, a message that shows what search term was used) -- see the "Finishing touches" commits in the commit history.
 
-- Oliver
+-- Oliver
