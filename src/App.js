@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import SearchIcon from './search.svg';
 import MovieCard from './MovieCard';
@@ -7,27 +7,24 @@ import * as credentials from './credentials.js';
 
 const API_URL = "http://www.omdbapi.com?apikey=" + credentials.API_KEY;
 
-const movie1 = {
-    "Title": "Jesus Revolution",
-    "Year": "2023",
-    "imdbID": "tt10098448",
-    "Type": "movie",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BZjQ4M2JiMTEtNDhiMi00OWM1LTkwMWEtODdjYTQxNWQyOTFiXkEyXkFqcGdeQXVyMjMxOTE0ODA@._V1_SX300.jpg"
-}
-
 const App = () => {
+
+    const [movies, setMovies] = useState([]);
 
     async function searchMovies(title) {
         const requestString = `${API_URL}&s=${title}`;
         const response = await fetch(requestString);
         const data = await response.json();
 
-        console.log(data.Search);
+        setMovies(data.Search);
+
+        // logging
+        console.log("Found movies", movies);
     }
     
     // Search for a movie whenever the app is mounted
     useEffect(() => {
-        searchMovies('Revolution');
+        searchMovies("Revolution");
     }, []);
 
     return(
@@ -37,7 +34,7 @@ const App = () => {
             <div className="search">
                 <input
                     placeholder="Search for movies!"
-                    value="Jesus Revolution"
+                    value="Revolution"
                     onChange={() => {}}
                 />
 
@@ -48,9 +45,22 @@ const App = () => {
                 />
             </div>
 
-            <div className="container">
-                <MovieCard movie={movie1}/>
-            </div>
+            {
+                movies?.length > 0 ? // if we have search results
+                (                    // display the movies as cards
+                    <div className="container">
+                        {movies.map( (movie) => (
+                            <MovieCard movie={movie}/>
+                        ))}
+                    </div>
+                )
+                :   // if we don't have search results
+                (   // display a message that no movies were found
+                    <div className="empty">
+                        <h2>No results</h2>
+                    </div>
+                )
+            }
             
         </div>
     );
