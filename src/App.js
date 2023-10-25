@@ -20,7 +20,7 @@ const App = () => {
         setMovies(data.Search);
 
         // logging
-        console.log("Found movies", movies);
+        console.log("Found movies", movies, " for search term \"", searchTerm, "\"");
     }
     
     // Do a first movie search when the component is mounted
