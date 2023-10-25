@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import './App.css';
 import SearchIcon from './search.svg';
 import MovieCard from './MovieCard';
@@ -11,13 +11,20 @@ const App = () => {
 
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState([""]);
+    const [usedSearchTerm, setUsedSearchTerm] = useState([""]);
+
+    const searchBarRef = useRef();
 
     async function searchMovies(title) {
+        setUsedSearchTerm(title);     // The movie title that was searched for. Will be shown on the results page.
+
         const requestString = `${API_URL}&s=${title}`;
         const response = await fetch(requestString);
         const data = await response.json();
 
         setMovies(data.Search);
+        
+        searchBarRef.current.value=""; // Clear the search bar when a search is made.
 
         // logging
         console.log("Found movies", movies, " for search term \"", searchTerm, "\"");
@@ -37,8 +44,10 @@ const App = () => {
             <div className="search">
                 <input
                     placeholder="Search for movies!"
-                    value={searchTerm}
+                    ref={searchBarRef}
+                    // value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={(e) => e.keyCode === 13 ? searchMovies(searchTerm) : {}}
                 />
 
                 <img
@@ -51,16 +60,22 @@ const App = () => {
             {
                 movies?.length > 0 ? // if we have search results
                 (                    // display the movies as cards
-                    <div className="container">
-                        {movies.map( (movie) => (
-                            <MovieCard movie={movie}/>
-                        ))}
-                    </div>
+                    
+                    <>
+                        <div className="empty">
+                            <h2>Results for "{usedSearchTerm}"</h2>
+                        </div>
+                        <div className="container">
+                            {movies.map( (movie) => (
+                                <MovieCard movie={movie}/>
+                            ))}
+                        </div>
+                    </>
                 )
                 :   // if we don't have search results
                 (   // display a message that no movies were found
                     <div className="empty">
-                        <h2>No results</h2>
+                        <h2>No results for "{usedSearchTerm}"</h2>
                     </div>
                 )
             }
