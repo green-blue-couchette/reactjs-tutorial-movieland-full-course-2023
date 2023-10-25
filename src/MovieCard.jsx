@@ -11,7 +11,7 @@ const MovieCard = ({movie}) => {
             </div>
 
             <div>
-                <img src={movie.Poster !== "N/A" ? movie.Poster : "https://placehold.in/300x200@2x.png/dark"}/>
+                <img src={movie.Poster !== "N/A" ? movie.Poster : "https://placehold.in/300x450@2x.png/dark"}/>
             </div>
 
             <div>
