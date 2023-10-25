@@ -62,7 +62,7 @@ const App = () => {
                 (                    // display the movies as cards
                     
                     <>
-                        <div className="empty">
+                        <div className="resultsMessage">
                             <h2>Results for "{usedSearchTerm}"</h2>
                         </div>
                         <div className="container">
@@ -74,7 +74,7 @@ const App = () => {
                 )
                 :   // if we don't have search results
                 (   // display a message that no movies were found
-                    <div className="empty">
+                    <div className="resultsMessage">
                         <h2>No results for "{usedSearchTerm}"</h2>
                     </div>
                 )
