@@ -10,6 +10,7 @@ const API_URL = "http://www.omdbapi.com?apikey=" + credentials.API_KEY;
 const App = () => {
 
     const [movies, setMovies] = useState([]);
+    const [searchTerm, setSearchTerm] = useState([""]);
 
     async function searchMovies(title) {
         const requestString = `${API_URL}&s=${title}`;
@@ -22,9 +23,9 @@ const App = () => {
         console.log("Found movies", movies);
     }
     
-    // Search for a movie whenever the app is mounted
+    // Do something whenever the component is mounted
     useEffect(() => {
-        searchMovies("Revolution");
+        console.log("Component has mounted");
     }, []);
 
     return(
@@ -34,14 +35,14 @@ const App = () => {
             <div className="search">
                 <input
                     placeholder="Search for movies!"
-                    value="Revolution"
-                    onChange={() => {}}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
 
                 <img
                 src={SearchIcon}
                 alt="search"
-                onClick={() => {}}
+                onClick={() => searchMovies(searchTerm)}
                 />
             </div>
 
